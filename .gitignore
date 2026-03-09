@@ -16,6 +16,5 @@ build/
 *.sqlite3
 .pytest_cache/
 .coverage
-htmlcov/
 *.log
 test.db
