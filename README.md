@@ -11,7 +11,7 @@
 
 ## Запуск приложения
 
-### Docker 
+### С Docker
 
 ```bash
 # Запуск всех сервисов (app, PostgreSQL, Redis)
@@ -45,6 +45,26 @@ locust -f tests/locustfile.py
 # Открыть http://localhost:8089
 # Указать количество пользователей и URL приложения
 ```
+
+## Основные эндпоинты
+
+### Аутентификация
+- `POST /auth/register` - Регистрация пользователя
+- `POST /auth/login` - Вход (получение JWT токена)
+
+### Работа со ссылками
+- `POST /links/shorten` - Создание короткой ссылки
+- `GET /{short_code}` - Редирект на оригинальный URL
+- `GET /links/{short_code}` - Информация о ссылке
+- `GET /links/{short_code}/stats` - Статистика переходов
+- `PUT /links/{short_code}` - Обновление ссылки (требует авторизации)
+- `DELETE /links/{short_code}` - Удаление ссылки (требует авторизации)
+- `GET /links/search/` - Поиск ссылок по URL
+
+### Администрирование
+- `POST /admin/cleanup/expired` - Удаление истекших ссылок
+- `POST /admin/cleanup/unused` - Удаление неиспользуемых ссылок
+- `GET /admin/expired-history` - История истекших ссылок
 
 ## Пример использования
 ```bash
